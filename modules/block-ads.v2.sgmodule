@@ -3,24 +3,7 @@
 #!system=ios
 
 [General]
-# use-local-host-item-for-proxy = false
 skip-proxy = localhost, *.local, injections.adguard.org, local.adguard.org, captive.apple.com, guzzoni.apple.com, 0.0.0.0/8, 10.0.0.0/8, 17.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.168.0.0/16, 192.88.99.0/24, 198.18.0.0/15, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 240.0.0.0/4, 255.255.255.255/32
-# wifi-assist = true
-# allow-wifi-access = true
-# wifi-access-http-port = 1082
-# wifi-access-socks5-port = 1083
-# exclude-simple-hostnames = true
-# ipv6 = true
-# test-timeout = 4
-# proxy-test-url = http://www.gstatic.com/generate_204
-# allow-hotspot-access = true
-# compatibility-mode = 1
-# udp-priority = true
-# ipv6-vif = auto
-# include-all-networks = true
-# include-local-networks = true
-# include-apns = true
-# include-cellular-services = true
 
 [Rule]
 DOMAIN-SET,https://raw.githubusercontent.com/geekdada/surge-list/master/domain-set/social-media-filter.txt,REJECT-TINYGIF

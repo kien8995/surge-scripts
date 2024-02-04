@@ -1,0 +1,6 @@
+#!name=Block ads static file
+#!desc=Block ads static file
+#!system=ios
+
+[Script]
+Request = type=http-request,pattern="^https?:\/\/.*[\\\/].+\.[a-zA-Z]{2,4}$",requires-body=0,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/block-ads-static.js

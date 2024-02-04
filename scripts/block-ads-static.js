@@ -1,4 +1,4 @@
-function isAdScriptUrl(url) {
+function isAdScript(filename) {
     // Define a list of keywords that are commonly found in ad script URLs
     const adKeywords = [
         "ad",
@@ -12,15 +12,12 @@ function isAdScriptUrl(url) {
         "adtech",
     ];
 
-    // Parse the URL to inspect its components
-    const parsedUrl = new URL(url);
-
     // Check the hostname and pathname for any of the keywords
     const hostnameContainsAdKeyword = adKeywords.some((keyword) =>
-        parsedUrl.hostname.toLowerCase().includes(keyword)
+        filename.toLowerCase().includes(keyword)
     );
     const pathnameContainsAdKeyword = adKeywords.some((keyword) =>
-        parsedUrl.pathname.toLowerCase().includes(keyword)
+        filename.toLowerCase().includes(keyword)
     );
 
     // Return true if any of the components contain ad-related keywords
@@ -34,7 +31,7 @@ function getPathFromUrl(url) {
 const url = getPathFromUrl($request.url);
 const filename = url.substring(url.lastIndexOf("/") + 1);
 const requestMethod = $request.method.toLowerCase();
-if (requestMethod == "get" && isAdScriptUrl(filename)) {
+if (requestMethod == "get" && isAdScript(filename)) {
     $done();
 } else {
     $done({});

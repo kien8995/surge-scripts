@@ -27,7 +27,11 @@ function isAdScriptUrl(url) {
     return hostnameContainsAdKeyword || pathnameContainsAdKeyword;
 }
 
-const url = $request.url;
+function getPathFromUrl(url) {
+    return url.split(/[?#]/)[0];
+}
+
+const url = getPathFromUrl($request.url);
 const requestMethod = $request.method.toLowerCase();
 if (requestMethod == "get" && isAdScriptUrl(url)) {
     $done();

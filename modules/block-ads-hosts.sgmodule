@@ -10510,6 +10510,7 @@
 *zygomasbeaches.guru = 0.0.0.0
 *zz.bdstatic.com = 0.0.0.0
 *zzelicawwofl.com = 0.0.0.0
+*ggpht.com = 0.0.0.0
 
 [URL Rewrite]
 (^https?:\/\/.+\.googlevideo\.com\/.+)(&ctier=[A-Z])(&.+) $1$3 302

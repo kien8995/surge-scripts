@@ -28,7 +28,8 @@ function isAdScriptUrl(url) {
 }
 
 const url = $request.url;
-if (isAdScriptUrl(url)) {
+const requestMethod = $request.method.toLowerCase();
+if (requestMethod == "get" && isAdScriptUrl(url)) {
     $done();
 } else {
     $done({});

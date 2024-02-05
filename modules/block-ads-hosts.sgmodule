@@ -38,7 +38,7 @@ DOMAIN,browser.sentry-cdn.com,REJECT
 DOMAIN,app.bugsnag.com,REJECT
 DOMAIN,api.bugsnag.com,REJECT
 DOMAIN-SUFFIX,sentry-cdn.com,REJECT
-URL-REGEX,(^https?:\/\/.+)(?= .*ad|.*doubleclick).*\.(js|swf|jpg|jpeg|png|gif),REJECT-TINYGIF
+URL-REGEX,(^https:\/\/.+)\/.*(ad|doubleclick).*\.(js|swf|jpg|jpeg|png|gif)$,REJECT-TINYGIF
 
 [Host]
 *24h-ad.24hstatic.com = 0.0.0.0

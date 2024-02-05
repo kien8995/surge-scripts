@@ -1,14 +1,24 @@
 #!name=Block Ads Hosts
 #!desc=Block Advertising for Surge iOS
 #!system=ios
+# https://github.com/geekdada/surge-list?tab=readme-ov-file
 
 [Rule]
-DOMAIN-SET,https://raw.githubusercontent.com/geekdada/surge-list/master/domain-set/social-media-filter.txt,REJECT-TINYGIF
-DOMAIN-SET,https://raw.githubusercontent.com/geekdada/surge-list/master/domain-set/dns-filter.txt,REJECT-TINYGIF
-DOMAIN-SET,https://raw.githubusercontent.com/geekdada/surge-list/master/domain-set/tracking-protection-filter.txt,REJECT-TINYGIF
-DOMAIN-SET,https://raw.githubusercontent.com/geekdada/surge-list/master/domain-set/base-filter.txt,REJECT-TINYGIF
-DOMAIN-SET,https://raw.githubusercontent.com/geekdada/surge-list/master/domain-set/adaway.txt,REJECT-TINYGIF
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/adaway.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/annoyances-filter.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/base-filter.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/chinese-filter.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/neohosts-full.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/neohosts.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/social-media-filter.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/tracking-protection-filter.txt,REJECT-TINYGIF,update-interval=21600
+DOMAIN-SET,https://cdn.jsdelivr.net/gh/geekdada/surge-list/domain-set/dns-filter.txt,REJECT-TINYGIF,update-interval=21600
+RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-exceptions-rule.conf,DIRECT,update-interval=21600
 RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-rule.conf,REJECT-TINYGIF,update-interval=21600
+#RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-OTA.conf,REJECT-TINYGIF,update-interval=21600
+#RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-FB.conf,REJECT-TINYGIF,update-interval=21600
+RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/hostsVN-surge-rewrite.conf,REJECT-TINYGIF,update-interval=21600
+#RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/adult/surge-rule.conf,REJECT-TINYGIF,update-interval=21600
 RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/gambling/surge-rule.conf,REJECT-TINYGIF,update-interval=21600
 RULE-SET,https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/surge-rule.conf,REJECT-TINYGIF,update-interval=21600
 DOMAIN,tracking.rus.miui.com,REJECT

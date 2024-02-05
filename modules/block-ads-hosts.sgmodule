@@ -38,7 +38,7 @@ DOMAIN,browser.sentry-cdn.com,REJECT
 DOMAIN,app.bugsnag.com,REJECT
 DOMAIN,api.bugsnag.com,REJECT
 DOMAIN-SUFFIX,sentry-cdn.com,REJECT
-URL-REGEX,^https?:\/\/.*[\\\/](?=.*ad|.*doubleclick).*\.(js|swf|jpg|jpeg|png|gif)$,REJECT-TINYGIF
+#URL-REGEX,^https?:\/\/.*[\\\/](?=.*ad|.*doubleclick).*\.(js|swf|jpg|jpeg|png|gif)$,REJECT-TINYGIF
 
 [Host]
 *24h-ad.24hstatic.com = 0.0.0.0
@@ -10551,3 +10551,4 @@ URL-REGEX,^https?:\/\/.*[\\\/](?=.*ad|.*doubleclick).*\.(js|swf|jpg|jpeg|png|gif
 
 [URL Rewrite]
 (^https?:\/\/.+\.googlevideo\.com\/.+)(&ctier=[A-Z])(&.+) $1$3 302
+^https?:\/\/.*[\\\/](?=.*ad|.*doubleclick).*\.(js|swf|jpg|jpeg|png|gif)$ _ reject

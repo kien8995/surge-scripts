@@ -58,9 +58,9 @@ let params = getParams($argument);
     $done({
         title: "Traffic Statistics | " + netType,
         content:
-            `Traffic ➟ ${upload} | ${download}\n` +
-            `Speed ➟ ${outCurrentSpeed} | ${inCurrentSpeed}\n` +
-            `Peak ➟ ${outMaxSpeed} | ${inMaxSpeed}`,
+            `Traffic ➟ ⬇️${download} | ⬆️${upload}\n` +
+            `Speed ➟ ⬇️${inCurrentSpeed} | ⬆️${outCurrentSpeed}\n` +
+            `Peak ➟ ⬇️${inMaxSpeed} | ⬆️${outMaxSpeed}`,
         icon: params.icon,
         "icon-color": params.color,
     });

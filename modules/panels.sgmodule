@@ -35,9 +35,9 @@ TrafficStatistics = type=generic,timeout=10,script-path= https://raw.githubuserc
 #Fields that should be modified group proxy policy group name
 NET_info = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/net_info.js,argument=icon=externaldrive.connected.to.line.below&color=#9a7ff7&group=🚀 VIEFAST VPN
 
-#机场信息
-#必须修改的字段:你encode后的机场订阅链接
-Sub_info = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/mieqq/mieqq/master/sub_info_panel.js ,script-update-interval=0,argument=url=[URL encode 后的机场节点链接]&reset_day=1&title=ExFlux&icon=opticaldisc&color=#5AC8FA
+#Subscription Infomation
+#Fields that must be modified: Your encoded subscription link
+Sub_info = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/sub_info_panel.js ,script-update-interval=0,argument=url=[URL encode 后的机场节点链接]&reset_day=1&title=ExFlux&icon=opticaldisc&color=#5AC8FA
 
 #disney+策略组控制
 #应当修改的字段 disneyGroup Disney+的策略组名称

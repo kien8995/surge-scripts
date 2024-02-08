@@ -1,0 +1,9 @@
+#!name=Truecaller
+#!desc=Truecaller unlock
+#!system=ios
+
+[Script]
+Response = type=http-response,pattern=^https://premium-(.+)\.truecaller\.com/v\d/(subscriptions|products\/apple),requires-body=1,binary-body-mode=1,max-size=2097152,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/truecaller.js,script-update-interval=86400,timeout=10
+
+[MITM]
+hostname = %APPEND% premium*.truecaller.com

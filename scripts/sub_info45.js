@@ -41,7 +41,7 @@ console.log(urls);
             .then((data) => [null, data])
             .catch((err) => [err, null]);
         if (err) {
-            console.log(err);
+            console.log("Error: ", err);
             continue;
         }
         content.push(...data);

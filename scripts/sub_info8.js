@@ -22,7 +22,7 @@ const params = getParams($argument);
 function httpAPI(path = "", method = "POST", body = null) {
     return new Promise((resolve) => {
         $httpAPI(method, path, body, (error, response, data) => {
-            resolve(error, response, data);
+            resolve([error, response, data]);
         });
     });
 }

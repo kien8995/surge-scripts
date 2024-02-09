@@ -33,11 +33,12 @@ Some servers do not support head access, you can add the parameter &method=get
 let args = getArgs();
 
 let url = args.url;
+let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
 
-$httpClient.head(url, function (error, response, data) {
+$httpClient.head(request, function (error, response, data) {
     body = {
         title: `${args.title}`,
-        content: `header: ${response.headers}`,
+        content: `header: ${response.headers["subscription-userinfo"]}`,
         icon: "globe.asia.australia.fill",
     };
     $done(body);

@@ -153,9 +153,9 @@ function formatTime(time) {
     return year + "year" + month + "month" + day + "day";
 }
 
-function pad(str, length, char = " ") {
-    return str.padStart((str.length + length) / 2, char).padEnd(length, char);
-}
+// function pad(str, length, char = " ") {
+//     return str.padStart((str.length + length) / 2, char).padEnd(length, char);
+// }
 
 function isValidUrl(urlString) {
     try {

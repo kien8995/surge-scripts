@@ -35,13 +35,52 @@ let args = getArgs();
 let url = args.url;
 let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
 
-$httpClient.head(request, function (error, response, data) {
-    body = {
-        title: `${args.title}`,
-        content: `header: ${response.headers["subscription-userinfo"]}`,
-        icon: "globe.asia.australia.fill",
-    };
-    $done(body);
+$httpClient.head(request, function (error, response, _) {
+    if (error || response.status !== 200) {
+        $done();
+        return;
+    }
+    let header = Object.keys(response.headers).find(
+        (key) => key.toLowerCase() === "subscription-userinfo"
+    );
+    if (!header) {
+        $done();
+        return;
+    }
+    let info = Object.fromEntries(
+        response.headers[header]
+            .match(/\w+=[\d.eE+-]+/g)
+            .map((item) => item.split("="))
+            .map(([k, v]) => [k, Number(v)])
+    );
+
+    let resetDayLeft = getRmainingDays(parseInt(args["reset_day"]));
+    let used = info.download + info.upload;
+    let total = info.total;
+    let expire = args.expire || info.expire;
+    let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
+
+    if (resetDayLeft) {
+        content.push(`Reset: ${resetDayLeft} days remaining`);
+    }
+
+    if (expire && expire !== "false") {
+        if (/^[\d.]+$/.test(expire)) expire *= 1000;
+        content.push(`Expiration: ${formatTime(expire)}`);
+    }
+
+    let now = new Date();
+    let hour = now.getHours();
+    let minutes = now.getMinutes();
+    hour = hour > 9 ? hour : "0" + hour;
+    minutes = minutes > 9 ? minutes : "0" + minutes;
+
+    $done({
+        title: `${args.title} | ${hour}:${minutes}`,
+        content: content.join("\n"),
+        icon: args.icon || "airplane.circle",
+        "icon-color": args.color || "#007aff",
+    });
 });
 
 // (async () => {

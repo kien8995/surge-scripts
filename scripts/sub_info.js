@@ -78,15 +78,14 @@ function getSubInfo(url) {
             );
 
             let resetDayLeft = getRmainingDays(parseInt(args["reset_day"]));
-            // let used = info.download + info.upload;
+            let used = info.download + info.upload;
             let total = info.total;
             let expire = args.expire || info.expire;
-            // let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
             let result = [
-                `      🔥 ${domain} 🔥`,
+                `💾      ${domain}      💾`,
                 `Upload: ${bytesToSize(info.upload)}`,
                 `Download: ${bytesToSize(info.download)}`,
-                `Total: ${bytesToSize(total)}`,
+                `Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`,
             ];
 
             if (resetDayLeft) {

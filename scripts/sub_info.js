@@ -58,7 +58,11 @@ $httpClient.head(request, function (error, response, _) {
     let used = info.download + info.upload;
     let total = info.total;
     let expire = args.expire || info.expire;
-    let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
+    // let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
+    let content = [
+        `Upload: ${bytesToSize(info.upload)}`,
+        `Download: ${bytesToSize(info.download)}`,
+    ];
 
     if (resetDayLeft) {
         content.push(`Reset: ${resetDayLeft} days remaining`);
@@ -67,6 +71,8 @@ $httpClient.head(request, function (error, response, _) {
     if (expire && expire !== "false") {
         if (/^[\d.]+$/.test(expire)) expire *= 1000;
         content.push(`Expiration: ${formatTime(expire)}`);
+    } else {
+        content.push(`Expiration: ♾️❤️‍🔥♾️`);
     }
 
     let now = new Date();
@@ -82,38 +88,6 @@ $httpClient.head(request, function (error, response, _) {
         "icon-color": args.color || "#007aff",
     });
 });
-
-// (async () => {
-//     let info = await getDataInfo(args.url);
-//     if (!info) $done();
-//     let resetDayLeft = getRmainingDays(parseInt(args["reset_day"]));
-
-//     let used = info.download + info.upload;
-//     let total = info.total;
-//     let expire = args.expire || info.expire;
-//     let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
-
-//     if (resetDayLeft) {
-//         content.push(`Reset: ${resetDayLeft} days remaining`);
-//     }
-//     if (expire && expire !== "false") {
-//         if (/^[\d.]+$/.test(expire)) expire *= 1000;
-//         content.push(`Expiration: ${formatTime(expire)}`);
-//     }
-
-//     let now = new Date();
-//     let hour = now.getHours();
-//     let minutes = now.getMinutes();
-//     hour = hour > 9 ? hour : "0" + hour;
-//     minutes = minutes > 9 ? minutes : "0" + minutes;
-
-//     $done({
-//         title: `${args.title} | ${hour}:${minutes}`,
-//         content: content.join("\n"),
-//         icon: args.icon || "airplane.circle",
-//         "icon-color": args.color || "#007aff",
-//     });
-// })();
 
 function getArgs() {
     return Object.fromEntries(

@@ -1,6 +1,6 @@
 // let args = getArgs();
 
-!(async () => {
+(async () => {
     $done({
         title: "Surge Pro",
         content: `Startup duration:`,

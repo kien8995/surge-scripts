@@ -2,16 +2,16 @@ let params = getParams($argument);
 
 !(async () => {
     /* Time acquisition */
-    let traffic = await httpAPI("/v1/traffic", "GET");
-    let dateNow = new Date();
-    let dateTime = Math.floor(traffic.startTime * 1000);
-    let startTime = timeTransform(dateNow, dateTime);
+    // let traffic = await httpAPI("/v1/traffic", "GET");
+    // let dateNow = new Date();
+    // let dateTime = Math.floor(traffic.startTime * 1000);
+    // let startTime = timeTransform(dateNow, dateTime);
 
-    if ($trigger == "button") await httpAPI("/v1/profiles/reload");
+    // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
 
     $done({
         title: "Surge Pro",
-        content: `Startup duration: ${startTime}`,
+        content: `${params.url}`,
         icon: params.icon,
         "icon-color": params.color,
     });

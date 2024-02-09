@@ -40,7 +40,7 @@ for (let i = 0; i < urls.length; i++) {
     let matches = url.match(/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i);
     let domain = matches && matches[1];
 
-    $httpClient.head(request, function (error, response, _) {
+    await $httpClient.head(request, function (error, response, _) {
         if (error || response.status !== 200) {
             $done();
             return;
@@ -86,7 +86,7 @@ for (let i = 0; i < urls.length; i++) {
     });
 
     if (i == urls.length - 1) {
-        content.push("─── ⋆⋅☆⋅⋆ ──");
+        content.push("─── ⋆⋅☆⋅⋆ ───");
     }
 }
 

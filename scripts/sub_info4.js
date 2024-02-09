@@ -11,7 +11,7 @@ let params = getParams($argument);
 
     $done({
         title: `${params.title}`,
-        content: `${params.url.split("|")}`,
+        content: `${params.urls.split("|")}`,
         icon: params.icon,
         "icon-color": params.color,
     });

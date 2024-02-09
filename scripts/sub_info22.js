@@ -1,4 +1,4 @@
-!(async () => {
+(async () => {
     /* Time acquisition */
     // let traffic = await httpAPI("/v1/traffic", "GET");
     // let dateNow = new Date();
@@ -7,8 +7,8 @@
     let params = getParams($argument);
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
     let urls = params.urls.split("|");
-    console.log("21");
     console.log("param: ", params, " ", typeof params);
+    console.log("22");
     console.log(typeof urls);
     console.log("start: ", urls);
     let response = await httpAPI(urls[0], "HEAD");
@@ -32,10 +32,13 @@ function httpAPI(path = "", method = "POST", body = null) {
 
 function getParams(param) {
     console.log(param);
-    return Object.fromEntries(
+    const result = Object.fromEntries(
         $argument
             .split("&")
             .map((item) => item.split("="))
             .map(([k, v]) => [k, decodeURIComponent(v)])
     );
+    console.log(result);
+
+    return result;
 }

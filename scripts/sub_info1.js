@@ -11,7 +11,7 @@ let params = getParams($argument);
 
     $done({
         title: "Surge Pro",
-        content: `${params.url}`,
+        content: `${$argument}`,
         icon: params.icon,
         "icon-color": params.color,
     });

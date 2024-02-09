@@ -41,7 +41,7 @@ let urls = args.urls.split("|");
             .catch((err) => [err, null]);
         if (err) {
             console.log(err);
-            return;
+            continue;
         }
 
         content.push(...data);

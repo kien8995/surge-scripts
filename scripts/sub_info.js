@@ -11,7 +11,7 @@ let args = getArgs();
     }
     $done({
         title: `${args.title}`,
-        content: args.url,
+        content: $argument,
         icon: args.icon || "airplane.circle",
         "icon-color": args.color || "#007aff",
     });

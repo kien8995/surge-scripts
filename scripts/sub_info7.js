@@ -13,7 +13,7 @@ const params = getParams($argument);
 
     $done({
         title: `${params.title}`,
-        content: `${response.headers}`,
+        content: `headers: ${response.headers} data: ${data}`,
         icon: params.icon,
         "icon-color": params.color,
     });

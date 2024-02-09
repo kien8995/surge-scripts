@@ -1,7 +1,8 @@
 let args = getArgs();
 
 (async () => {
-    let info = await getDataInfo(args.url);
+    // let info = await getDataInfo(args.url);
+    let info = true;
     if (!info) {
         $done({
             title: "Title",
@@ -10,7 +11,7 @@ let args = getArgs();
     }
     $done({
         title: `${args.title}`,
-        content: info,
+        content: args.url,
         icon: args.icon || "airplane.circle",
         "icon-color": args.color || "#007aff",
     });

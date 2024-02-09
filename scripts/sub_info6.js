@@ -9,11 +9,11 @@ const params = getParams($argument);
 
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
     const urls = params.urls.split("|");
-    const data = await httpAPI(urls[0], "HEAD");
+    const [error, response, data] = await httpAPI(urls[0], "HEAD");
 
     $done({
         title: `${params.title}`,
-        content: `${data.headers}`,
+        content: `${response.headers}`,
         icon: params.icon,
         "icon-color": params.color,
     });
@@ -21,8 +21,8 @@ const params = getParams($argument);
 
 function httpAPI(path = "", method = "POST", body = null) {
     return new Promise((resolve) => {
-        $httpAPI(method, path, body, (result) => {
-            resolve(result);
+        $httpAPI(method, path, body, (error, response, data) => {
+            resolve(error, response, data);
         });
     });
 }

@@ -37,13 +37,7 @@ console.log(urls);
 (async () => {
     let content = [];
     for (let i = 0; i < urls.length; i++) {
-        const [err, data] = await getSubInfo(urls[i])
-            .then((data) => [null, data])
-            .catch((err) => [err, null]);
-        if (err) {
-            console.log("Error: ", err);
-            continue;
-        }
+        const data = await getSubInfo(urls[i]);
         content.push(...data);
     }
 

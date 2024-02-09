@@ -36,8 +36,14 @@ let urls = args.urls.split("|");
 (async () => {
     let content = [];
     for (let i = 0; i < urls.length; i++) {
-        let result = await getSubInfo(urls[i]);
-        content.push(...result);
+        const [err, data] = await getSubInfo(urls[i])
+            .then((data) => [null, data])
+            .catch((err) => [err, null]);
+        if (err) {
+            console.log(err);
+            return;
+        }
+        content.push(...data);
 
         if (i == urls.length - 1) {
             content.push("────── ⋆⋅☆⋅⋆ ──────");
@@ -53,6 +59,7 @@ let urls = args.urls.split("|");
 })();
 
 function getSubInfo(url) {
+    if (!isValidUrl(url)) return Promise.reject(new Error("Invalid URL"));
     let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
     let matches = url.match(/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i);
     let domain = matches && matches[1];
@@ -109,52 +116,6 @@ function getArgs() {
             .split("&")
             .map((item) => item.split("="))
             .map(([k, v]) => [k, decodeURIComponent(v)])
-    );
-}
-
-function getUserInfo(url) {
-    if (!isValidUrl(url)) return Promise.reject(new Error("Invalid URL"));
-
-    let method = args.method || "head";
-    let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
-    return new Promise((resolve, reject) =>
-        $httpClient[method](request, (err, resp) => {
-            if (err != null) {
-                reject(err);
-                return;
-            }
-            if (resp.status !== 200) {
-                reject(resp.status);
-                return;
-            }
-            let header = Object.keys(resp.headers).find(
-                (key) => key.toLowerCase() === "subscription-userinfo"
-            );
-            if (header) {
-                resolve(resp.headers[header]);
-                return;
-            }
-            reject(
-                "The link response header does not contain traffic information"
-            );
-        })
-    );
-}
-
-async function getDataInfo(url) {
-    const [err, data] = await getUserInfo(url)
-        .then((data) => [null, data])
-        .catch((err) => [err, null]);
-    if (err) {
-        console.log(err);
-        return;
-    }
-
-    return Object.fromEntries(
-        data
-            .match(/\w+=[\d.eE+-]+/g)
-            .map((item) => item.split("="))
-            .map(([k, v]) => [k, Number(v)])
     );
 }
 

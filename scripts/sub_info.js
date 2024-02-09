@@ -60,7 +60,7 @@ function getSubInfo(url) {
     return new Promise((resolve, reject) =>
         $httpClient.head(request, function (error, response, _) {
             if (error || response.status !== 200) {
-                reject(err);
+                reject(error);
                 return;
             }
             let header = Object.keys(response.headers).find(

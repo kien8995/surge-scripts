@@ -65,6 +65,8 @@ function getSubInfo(url) {
 
     return new Promise((resolve, reject) =>
         $httpClient.head(request, function (error, response, _) {
+            console.log(response.status);
+            console.log(response.headers);
             if (response.status !== 200) {
                 reject(error);
             }

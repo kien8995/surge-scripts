@@ -9,7 +9,7 @@ const params = getParams($argument);
 
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
     const urls = params.urls.split("|");
-    console.log("18");
+    console.log("19");
     console.log("param: ", $argument, " ", typeof $argument);
     console.log(typeof urls);
     console.log("start: ", urls);
@@ -33,6 +33,7 @@ function httpAPI(path = "", method = "POST", body = null) {
 }
 
 function getParams(param) {
+    console.log(param);
     return Object.fromEntries(
         $argument
             .split("&")

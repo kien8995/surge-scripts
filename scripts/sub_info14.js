@@ -8,8 +8,8 @@ const params = getParams($argument);
     // let startTime = timeTransform(dateNow, dateTime);
 
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
-    const urls = params.urls.toString().split("|");
-    console.log("param: ", params.urls);
+    const urls = params["urls"].toString().split("|");
+    console.log("param: ", params["urls"]);
     console.log(typeof urls);
     console.log("start: ", urls);
     const response = await httpAPI(urls[0], "HEAD");

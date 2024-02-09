@@ -66,12 +66,14 @@ function getSubInfo(url) {
         $httpClient.head(request, function (error, response, _) {
             if (!response || response.status !== 200) {
                 reject(error);
+                return;
             }
             let header = Object.keys(response.headers).find(
                 (key) => key.toLowerCase() === "subscription-userinfo"
             );
             if (!header) {
                 reject("Not Available");
+                return;
             }
             let info = Object.fromEntries(
                 response.headers[header]

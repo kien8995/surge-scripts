@@ -87,14 +87,15 @@ for (let i = 0; i < urls.length; i++) {
 
     if (i == urls.length - 1) {
         content.push("─── ⋆⋅☆⋅⋆ ──");
-        $done({
-            title: `${args.title}`,
-            content: content.join("\n"),
-            icon: args.icon || "airplane.circle",
-            "icon-color": args.color || "#007aff",
-        });
     }
 }
+
+$done({
+    title: `${args.title}`,
+    content: content.join("\n"),
+    icon: args.icon || "airplane.circle",
+    "icon-color": args.color || "#007aff",
+});
 
 function getArgs() {
     return Object.fromEntries(

@@ -41,14 +41,12 @@ let urls = args.urls.split("|");
             .catch((err) => [err, null]);
         if (err) {
             console.log(err);
-            return;
+            continue;
         }
         content.push(...data);
-
-        if (i == urls.length - 1) {
-            content.push("────── ⋆⋅☆⋅⋆ ──────");
-        }
     }
+
+    content.push("────── ⋆⋅☆⋅⋆ ──────");
 
     $done({
         title: `${args.title}`,

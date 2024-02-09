@@ -40,7 +40,7 @@ let urls = args.urls.split("|");
         content.push(...result);
 
         if (i == urls.length - 1) {
-            content.push("─── ⋆⋅☆⋅⋆ ───");
+            content.push("────── ⋆⋅☆⋅⋆ ──────");
         }
     }
 
@@ -83,7 +83,7 @@ function getSubInfo(url) {
             let expire = args.expire || info.expire;
             // let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
             let result = [
-                `${domain}`,
+                `      🔥 ${domain} 🔥`,
                 `Upload: ${bytesToSize(info.upload)}`,
                 `Download: ${bytesToSize(info.download)}`,
                 `Total: ${bytesToSize(total)}`,
@@ -103,62 +103,6 @@ function getSubInfo(url) {
         })
     );
 }
-
-// for (let i = 0; i < urls.length; i++) {
-//     let url = urls[i];
-//     let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
-//     let matches = url.match(/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i);
-//     let domain = matches && matches[1];
-
-//     $httpClient.head(request, function (error, response, _) {
-//         if (error || response.status !== 200) {
-//             $done();
-//             return;
-//         }
-//         let header = Object.keys(response.headers).find(
-//             (key) => key.toLowerCase() === "subscription-userinfo"
-//         );
-//         if (!header) {
-//             $done();
-//             return;
-//         }
-//         let info = Object.fromEntries(
-//             response.headers[header]
-//                 .match(/\w+=[\d.eE+-]+/g)
-//                 .map((item) => item.split("="))
-//                 .map(([k, v]) => [k, Number(v)])
-//         );
-
-//         let resetDayLeft = getRmainingDays(parseInt(args["reset_day"]));
-//         // let used = info.download + info.upload;
-//         let total = info.total;
-//         let expire = args.expire || info.expire;
-//         // let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
-//         content.push(
-//             ...[
-//                 `${domain}`,
-//                 `Upload: ${bytesToSize(info.upload)}`,
-//                 `Download: ${bytesToSize(info.download)}`,
-//                 `Total: ${bytesToSize(total)}`,
-//             ]
-//         );
-
-//         if (resetDayLeft) {
-//             content.push(`Reset: ${resetDayLeft} days remaining`);
-//         }
-
-//         if (expire && expire !== "false") {
-//             if (/^[\d.]+$/.test(expire)) expire *= 1000;
-//             content.push(`Expiration: ${formatTime(expire)}`);
-//         } else {
-//             content.push(`Expiration: ♾️❤️‍🔥♾️`);
-//         }
-//     });
-
-//     if (i == urls.length - 1) {
-//         content.push("─── ⋆⋅☆⋅⋆ ───");
-//     }
-// }
 
 function getArgs() {
     return Object.fromEntries(

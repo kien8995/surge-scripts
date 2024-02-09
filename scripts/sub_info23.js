@@ -6,9 +6,9 @@
     // let startTime = timeTransform(dateNow, dateTime);
     let params = getParams($argument);
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
-    let urls = params.urls.split("|");
     console.log("param: ", params, " ", typeof params);
-    console.log("22");
+    let urls = params.urls;
+    console.log("23");
     console.log(typeof urls);
     console.log("start: ", urls);
     let response = await httpAPI(urls[0], "HEAD");

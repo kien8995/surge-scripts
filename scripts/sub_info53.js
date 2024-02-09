@@ -87,7 +87,7 @@ function getSubInfo(url) {
             let total = info.total;
             let expire = args.expire || info.expire;
             let result = [
-                pad(`💾 ${domain} 💾`, 20),
+                `💾      ${domain}      💾`,
                 `Upload: ${bytesToSize(info.upload)}`,
                 `Download: ${bytesToSize(info.download)}`,
                 `Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`,
@@ -151,6 +151,6 @@ function formatTime(time) {
     return year + "year" + month + "month" + day + "day";
 }
 
-function pad(str, length, char = " ") {
-    return str.padStart((str.length + length) / 2, char).padEnd(length, char);
-}
+// function pad(str, length, char = " ") {
+//     return str.padStart((str.length + length) / 2, char).padEnd(length, char);
+// }

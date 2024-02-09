@@ -32,6 +32,7 @@ Some servers do not support head access, you can add the parameter &method=get
 
 let args = getArgs();
 let urls = args.urls.split("|");
+console.log(urls);
 
 (async () => {
     let content = [];

@@ -9,7 +9,7 @@ const params = getParams($argument);
 
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
     const urls = params.urls.split("|");
-    console.log("start: ", urls[0]);
+    console.log("start: ", urls, " ", typeof urls);
     const response = await httpAPI(urls[0], "HEAD");
     console.log("end.");
 

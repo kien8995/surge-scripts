@@ -1,6 +1,6 @@
 let args = getArgs();
 
-(async () => {
+!(async () => {
     // let info = await getDataInfo(args.url);
     let info = true;
     if (!info) {

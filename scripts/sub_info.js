@@ -1,141 +1,58 @@
-// let args = getArgs();
+let params = getParams($argument);
 
 !(async () => {
+    /* Time acquisition */
+    let traffic = await httpAPI("/v1/traffic", "GET");
+    let dateNow = new Date();
+    let dateTime = Math.floor(traffic.startTime * 1000);
+    let startTime = timeTransform(dateNow, dateTime);
+
+    if ($trigger == "button") await httpAPI("/v1/profiles/reload");
+
     $done({
         title: "Surge Pro",
-        content: `Startup duration:`,
+        content: `Startup duration: ${startTime}`,
         icon: params.icon,
         "icon-color": params.color,
     });
 })();
 
-// !(async () => {
-//     // let info = await getDataInfo(args.url);
-//     let info = true;
-//     if (!info) {
-//         $done({
-//             title: "Title",
-//             content: "No content",
-//         });
-//     }
-//     $done({
-//         title: `${args.title} artsrt`,
-//         content: "rstodienrstedn",
-//         icon: args.icon || "airplane.circle",
-//         "icon-color": args.color || "#007aff",
-//     });
+function timeTransform(dateNow, dateTime) {
+    let dateDiff = dateNow - dateTime;
+    let days = Math.floor(dateDiff / (24 * 3600 * 1000)); //Calculate the difference in days
+    let leave1 = dateDiff % (24 * 3600 * 1000); //Calculate the number of milliseconds remaining after days
+    let hours = Math.floor(leave1 / (3600 * 1000)); //Calculate hours
+    //Calculate difference in minutes
+    let leave2 = leave1 % (3600 * 1000); //Calculate the number of milliseconds remaining after hours
+    let minutes = Math.floor(leave2 / (60 * 1000)); //Calculate difference in minutes
+    //Calculate the difference in seconds
+    let leave3 = leave2 % (60 * 1000); //Calculate the number of milliseconds remaining after minutes
+    let seconds = Math.round(leave3 / 1000);
 
-// let resetDayLeft = getRmainingDays(parseInt(args["reset_day"]));
+    if (days == 0) {
+        if (hours == 0) {
+            if (minutes == 0) return `${seconds}s`;
+            return `${minutes}m${seconds}s`;
+        }
+        return `${hours}h${minutes}m${seconds}s`;
+    } else {
+        return `${days}d${hours}h${minutes}m`;
+    }
+}
 
-// let used = info.download + info.upload;
-// let total = info.total;
-// let expire = args.expire || info.expire;
-// let content = [`用量：${bytesToSize(used)} | ${bytesToSize(total)}`];
+function httpAPI(path = "", method = "POST", body = null) {
+    return new Promise((resolve) => {
+        $httpAPI(method, path, body, (result) => {
+            resolve(result);
+        });
+    });
+}
 
-// if (resetDayLeft) {
-//     content.push(`重置：剩余${resetDayLeft}天`);
-// }
-// if (expire && expire !== "false") {
-//     if (/^[\d.]+$/.test(expire)) expire *= 1000;
-//     content.push(`到期：${formatTime(expire)}`);
-// }
-
-// let now = new Date();
-// let hour = now.getHours();
-// let minutes = now.getMinutes();
-// hour = hour > 9 ? hour : "0" + hour;
-// minutes = minutes > 9 ? minutes : "0" + minutes;
-
-// $done({
-//     title: `${args.title} | ${hour}:${minutes}`,
-//     content: content.join("\n"),
-//     icon: args.icon || "airplane.circle",
-//     "icon-color": args.color || "#007aff",
-// });
-// })();
-
-function getArgs() {
+function getParams(param) {
     return Object.fromEntries(
         $argument
             .split("&")
             .map((item) => item.split("="))
             .map(([k, v]) => [k, decodeURIComponent(v)])
     );
-}
-
-function getUserInfo(url) {
-    let method = args.method || "head";
-    let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
-    return new Promise((resolve, reject) =>
-        $httpClient[method](request, (err, resp) => {
-            if (err != null) {
-                reject(err);
-                return;
-            }
-            if (resp.status !== 200) {
-                reject(resp.status);
-                return;
-            }
-            let header = Object.keys(resp.headers).find(
-                (key) => key.toLowerCase() === "subscription-userinfo"
-            );
-            if (header) {
-                resolve(resp.headers[header]);
-                return;
-            }
-            reject("链接响应头不带有流量信息");
-        })
-    );
-}
-
-async function getDataInfo(url) {
-    const [err, data] = await getUserInfo(url)
-        .then((data) => [null, data])
-        .catch((err) => [err, null]);
-    if (err) {
-        console.log(err);
-        return;
-    }
-
-    return data;
-    // return Object.fromEntries(
-    //     data
-    //         .match(/\w+=[\d.eE+-]+/g)
-    //         .map((item) => item.split("="))
-    //         .map(([k, v]) => [k, Number(v)])
-    // );
-}
-
-function getRmainingDays(resetDay) {
-    if (!resetDay) return;
-
-    let now = new Date();
-    let today = now.getDate();
-    let month = now.getMonth();
-    let year = now.getFullYear();
-    let daysInMonth;
-
-    if (resetDay > today) {
-        daysInMonth = 0;
-    } else {
-        daysInMonth = new Date(year, month + 1, 0).getDate();
-    }
-
-    return daysInMonth - today + resetDay;
-}
-
-function bytesToSize(bytes) {
-    if (bytes === 0) return "0B";
-    let k = 1024;
-    sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    let i = Math.floor(Math.log(bytes) / Math.log(k));
-    return (bytes / Math.pow(k, i)).toFixed(2) + " " + sizes[i];
-}
-
-function formatTime(time) {
-    let dateObj = new Date(time);
-    let year = dateObj.getFullYear();
-    let month = dateObj.getMonth() + 1;
-    let day = dateObj.getDate();
-    return year + "年" + month + "月" + day + "日";
 }

@@ -8,7 +8,7 @@
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
     console.log("param: ", params, " ", typeof params);
     let urls = params.urls;
-    console.log("24");
+    console.log("25");
     console.log(typeof urls);
     console.log("start: ", urls);
     let response = await httpAPI(urls[0], "HEAD");
@@ -22,7 +22,7 @@
     });
 })();
 
-async function httpAPI(path = "", method = "POST", body = null) {
+function httpAPI(path = "", method = "POST", body = null) {
     return new Promise((resolve) => {
         $httpAPI(method, path, body, (error, response, data) => {
             resolve(response);
@@ -30,7 +30,7 @@ async function httpAPI(path = "", method = "POST", body = null) {
     });
 }
 
-function getParams(param) {
+async function getParams(param) {
     console.log(param);
     const result = Object.fromEntries(
         $argument
@@ -39,8 +39,10 @@ function getParams(param) {
             .map(([k, v]) => [k, decodeURIComponent(v)])
     );
     console.log(result);
-    console.log(result.urls, typeof urls);
-    console.log(result.urls.split("|"));
+    console.log(result.urls);
+    console.log(result.urls.split("|")[0]);
+    let response = await httpAPI(result.urls.split("|")[0], "HEAD");
+    console.log(response.headers);
 
     return result;
 }

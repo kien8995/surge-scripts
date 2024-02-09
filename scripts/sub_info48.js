@@ -32,7 +32,6 @@ Some servers do not support head access, you can add the parameter &method=get
 
 let args = getArgs();
 let urls = args.urls.split("|");
-console.log(urls);
 
 (async () => {
     let content = [];
@@ -52,7 +51,6 @@ console.log(urls);
 })();
 
 function getSubInfo(url) {
-    if (!isValidUrl(url)) return Promise.reject(new Error("Invalid URL"));
     let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
     let matches = url.match(/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i);
     let domain = matches && matches[1];
@@ -150,11 +148,3 @@ function formatTime(time) {
 // function pad(str, length, char = " ") {
 //     return str.padStart((str.length + length) / 2, char).padEnd(length, char);
 // }
-
-function isValidUrl(urlString) {
-    try {
-        return Boolean(new URL(urlString));
-    } catch (e) {
-        return false;
-    }
-}

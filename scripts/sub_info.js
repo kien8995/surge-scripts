@@ -34,8 +34,8 @@ let args = getArgs();
 
 let url = args.url;
 let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
-let domain = new URL(url);
-domain = domain.hostname.replace("www.", "");
+let matches = url.match(/^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i);
+let domain = matches && matches[1];
 
 $httpClient.head(request, function (error, response, _) {
     if (error || response.status !== 200) {

@@ -10,8 +10,8 @@ let args = getArgs();
         });
     }
     $done({
-        title: `${args.title}`,
-        content: $argument,
+        title: `${args.title} artsrt`,
+        content: "rstodienrstedn",
         icon: args.icon || "airplane.circle",
         "icon-color": args.color || "#007aff",
     });

@@ -36,7 +36,14 @@ let urls = args.urls.split("|");
 (async () => {
     let content = [];
     for (let i = 0; i < urls.length; i++) {
-        const data = await getSubInfo(urls[i]);
+        const [err, data] = await getSubInfo(urls[i])
+            .then((data) => [null, data])
+            .catch((err) => [err, null]);
+        if (err) {
+            console.log(err);
+            return;
+        }
+
         content.push(...data);
     }
 
@@ -57,9 +64,7 @@ function getSubInfo(url) {
 
     return new Promise((resolve, reject) =>
         $httpClient.head(request, function (error, response, _) {
-            console.log(response.status);
-            console.log(response.headers);
-            if (response.status !== 200) {
+            if (!response || response.status !== 200) {
                 reject(error);
             }
             let header = Object.keys(response.headers).find(
@@ -96,7 +101,6 @@ function getSubInfo(url) {
             } else {
                 result.push(`Expiration: ♾️❤️‍🔥♾️`);
             }
-            console.log(result);
             resolve(result);
         })
     );

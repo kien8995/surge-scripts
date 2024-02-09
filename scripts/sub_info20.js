@@ -1,4 +1,4 @@
-const params = getParams($argument);
+let params = getParams($argument);
 
 !(async () => {
     /* Time acquisition */
@@ -8,12 +8,12 @@ const params = getParams($argument);
     // let startTime = timeTransform(dateNow, dateTime);
 
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
-    const urls = params.urls.split("|");
-    console.log("19");
+    let urls = params.urls.split("|");
+    console.log("20");
     console.log("param: ", $argument, " ", typeof $argument);
     console.log(typeof urls);
     console.log("start: ", urls);
-    const response = await httpAPI(urls[0], "HEAD");
+    let response = await httpAPI(urls[0], "HEAD");
     console.log("end.");
 
     $done({

@@ -12,7 +12,7 @@ const params = getParams($argument);
     const [error, response, data] = await httpAPI(urls[0], "HEAD");
 
     $done({
-        title: `${params.title}`,
+        title: `${params.title} rsatsrt`,
         content: `headers: ${response.headers} data: ${data}`,
         icon: params.icon,
         "icon-color": params.color,

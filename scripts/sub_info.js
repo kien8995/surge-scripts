@@ -87,7 +87,7 @@ function getSubInfo(url) {
             let total = info.total;
             let expire = args.expire || info.expire;
             let result = [
-                pad(`💾 ${domain} 💾`, 30),
+                pad(`💾 ${domain} 💾`, 60),
                 `Upload: ${bytesToSize(info.upload)}`,
                 `Download: ${bytesToSize(info.download)}`,
                 `Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`,

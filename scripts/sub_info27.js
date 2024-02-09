@@ -8,7 +8,7 @@
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
     console.log("param: ", params, " ", typeof params);
     let urls = params.urls;
-    console.log("26");
+    console.log("27");
     console.log(typeof urls);
     console.log("start: ", urls);
     let response = await httpAPI(urls[0], "HEAD");
@@ -30,7 +30,7 @@ function httpAPI(path = "", method = "POST", body = null) {
     });
 }
 
-async function getParams(param) {
+function getParams(param) {
     console.log(param);
     const result = Object.fromEntries(
         $argument
@@ -41,7 +41,7 @@ async function getParams(param) {
     console.log(result);
     console.log(result.urls);
     console.log(result.urls.split("|")[0]);
-    const [err, data] = await httpAPI(result.urls.split("|")[0], "HEAD")
+    const [err, data] = httpAPI(result.urls.split("|")[0], "HEAD")
         .then((data) => [null, data])
         .catch((err) => [err, null]);
     if (err) {

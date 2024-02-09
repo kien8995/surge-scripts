@@ -34,6 +34,8 @@ let args = getArgs();
 
 let url = args.url;
 let request = { headers: { "User-Agent": "Quantumult%20X" }, url };
+let domain = new URL(url);
+domain = domain.hostname.replace("www.", "");
 
 $httpClient.head(request, function (error, response, _) {
     if (error || response.status !== 200) {
@@ -55,13 +57,15 @@ $httpClient.head(request, function (error, response, _) {
     );
 
     let resetDayLeft = getRmainingDays(parseInt(args["reset_day"]));
-    let used = info.download + info.upload;
+    // let used = info.download + info.upload;
     let total = info.total;
     let expire = args.expire || info.expire;
     // let content = [`Usage: ${bytesToSize(used)} | ${bytesToSize(total)}`];
     let content = [
+        domain,
         `Upload: ${bytesToSize(info.upload)}`,
         `Download: ${bytesToSize(info.download)}`,
+        `Total: ${bytesToSize(total)}`,
     ];
 
     if (resetDayLeft) {
@@ -75,14 +79,8 @@ $httpClient.head(request, function (error, response, _) {
         content.push(`Expiration: ♾️❤️‍🔥♾️`);
     }
 
-    let now = new Date();
-    let hour = now.getHours();
-    let minutes = now.getMinutes();
-    hour = hour > 9 ? hour : "0" + hour;
-    minutes = minutes > 9 ? minutes : "0" + minutes;
-
     $done({
-        title: `${args.title} | ${hour}:${minutes}`,
+        title: `${args.title}`,
         content: content.join("\n"),
         icon: args.icon || "airplane.circle",
         "icon-color": args.color || "#007aff",

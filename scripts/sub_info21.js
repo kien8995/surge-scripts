@@ -1,16 +1,14 @@
-let params = getParams($argument);
-
 !(async () => {
     /* Time acquisition */
     // let traffic = await httpAPI("/v1/traffic", "GET");
     // let dateNow = new Date();
     // let dateTime = Math.floor(traffic.startTime * 1000);
     // let startTime = timeTransform(dateNow, dateTime);
-
+    let params = getParams($argument);
     // if ($trigger == "button") await httpAPI("/v1/profiles/reload");
     let urls = params.urls.split("|");
-    console.log("20");
-    console.log("param: ", $argument, " ", typeof $argument);
+    console.log("21");
+    console.log("param: ", params, " ", typeof params);
     console.log(typeof urls);
     console.log("start: ", urls);
     let response = await httpAPI(urls[0], "HEAD");

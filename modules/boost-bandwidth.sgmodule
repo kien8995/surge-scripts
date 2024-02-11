@@ -1,0 +1,6 @@
+#!name=Boost Bandwidth
+#!desc=Execute in the background every two minutes
+#!system=ios
+
+[Script]
+cron "*/2 * * * *" script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/get-speed-test-config.js

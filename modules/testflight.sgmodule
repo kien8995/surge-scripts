@@ -1,7 +1,5 @@
 #!name=TestFlight regional restrictions lifted
 #!desc=This module is suitable for the problem of "APP is not available" when updating TestFlight.
-#!author=NobyDa
-#!repo=https://github.com/NobyDa/Script/tree/master
 
 [General]
 skip-proxy = %APPEND% iosapps.itunes.apple.com

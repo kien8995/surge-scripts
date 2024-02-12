@@ -1,0 +1,11 @@
+#!name=Reddit
+#!desc=Reddit removes ads, simple and crude test
+
+[URL Rewrite]
+^https:\/\/api\.zuihuimai\.com - reject
+
+[Script]
+Reddit = type=http-response,pattern=https:\/\/gql\.reddit\.com,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/reddit.ad.js
+
+[MITM]
+hostname = %APPEND% gql.reddit.com

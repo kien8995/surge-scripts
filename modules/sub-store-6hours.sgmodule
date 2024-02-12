@@ -1,0 +1,6 @@
+#!name=Sub-Store Sync (6hr)
+#!desc=Synchronize every 6 hours starting at 1 am
+#!system=ios
+
+[Script]
+Sub-Store Sync = type=cron,cronexp=0 00/6 * * *,wake-system=1,timeout=120,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/cron-sync-artifacts.min.js

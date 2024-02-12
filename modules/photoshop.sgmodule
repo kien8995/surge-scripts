@@ -1,5 +1,5 @@
-#!name=PhotoshopExpress
-#!desc=PhotoshopExpress premium
+#!name=Photoshop Express
+#!desc=Photoshop Express premium
 
 [MITM]
 hostname = %APPEND% lcs-mobile-cops.adobe.io

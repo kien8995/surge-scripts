@@ -5,4 +5,4 @@
 AntiAdbDetect = type=http-response,pattern=^https?:\/\/(ipacrack\.com|ios\.codevn\.net),requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/anti-adb-detect.js, time-out=10
 
 [MITM]
-hostname = %APPEND% ipacrack.com, ios.codevn.net
+hostname = %APPEND% ipacrack.com, ios.codevn.net, web1s.asia

@@ -1,0 +1,8 @@
+#!name=Zing MP3
+#!desc=Zing MP3 unlock
+
+[Script]
+ZingMP3 = type=http-response,pattern=^https?:\/\/(api\.zingmp3\.vn)\/v2\/user\/profile\/get\/detail.*,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/zingmp3.js, time-out=10
+
+[MITM]
+hostname = %APPEND% api.zingmp3.vn

@@ -1,5 +1,6 @@
 #!name=Sub-Store
 #!desc=Advanced subscription management tool
+#!arguments=ability:http-client-policy,cronexp:0 0 * * *,sync:"Sub-Store Sync"
 
 [MITM]
 hostname = %APPEND% sub.store
@@ -8,3 +9,5 @@ hostname = %APPEND% sub.store
 Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api\/(preview|sync|(utils\/node-info))),script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-1.min.js,requires-body=true,timeout=120,ability=http-client-policy
 
 Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-0.min.js,requires-body=true
+
+#{{{sync}}}=type=cron,cronexp={{{cronexp}}},wake-system=1,timeout=120,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/cron-sync-artifacts.min.js

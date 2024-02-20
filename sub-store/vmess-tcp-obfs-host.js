@@ -11,6 +11,9 @@ function operator(proxies, targetPlatform) {
                 proxy.sni = host;
                 proxy["skip-cert-verify"] = allowInsecure == "true";
             }
+
+            proxy["underlying-proxy"] = "🇻🇳viefast AdBlock (46)";
+
             return proxy;
         });
     }

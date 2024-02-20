@@ -12,7 +12,9 @@ function operator(proxies, targetPlatform) {
                 proxy["skip-cert-verify"] = allowInsecure == "true";
             }
 
-            proxy["underlying-proxy"] = "🇻🇳viefast AdBlock (46)";
+            if (proxy.name !== "🇻🇳viefast AdBlock (46)") {
+                proxy["underlying-proxy"] = "🇻🇳viefast AdBlock (46)";
+            }
 
             return proxy;
         });

@@ -1,7 +1,7 @@
 #!name=Youtube (Music) Enhance
 #!desc=Applicable to Youtube & Youtube Music (IOS >= 15)
 #!category= Youtube
-#!arguments=BLOCK_UPLOAD_BTN:true,BLOCK_SELECTION_BTN:true,SubtitleTranslationLanguage:vi,LyricsTranslationLanguage:vi
+#!arguments=BLOCK_UPLOAD_BTN:false,BLOCK_SELECTION_BTN:false,SubtitleTranslationLanguage:vi,LyricsTranslationLanguage:vi
 #!arguments-desc=- Shield parameters: [true, false] \n- Translation parameters: [language code, off]\n\n# Language code follows Google Translate Languages Codes, when filling in "off": Turn off translation
 
 # > Note

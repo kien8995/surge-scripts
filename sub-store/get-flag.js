@@ -13,6 +13,18 @@ function operator(proxies) {
     return proxies;
 }
 
+function containExceptionWords(name) {
+    if (
+        ["ID:", "SNI:", "Dùng:"].some(function (v) {
+            return name.indexOf(v) >= 0;
+        })
+    ) {
+        return true;
+    }
+
+    return false;
+}
+
 function containFlag(name) {
     return /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/.test(name);
 }

@@ -1,7 +1,7 @@
 function operator(proxies) {
     proxies.forEach((p) => {
         const name = p.name;
-        if (!containFlag(name)) {
+        if (!containFlag(name) && !containExceptionWords(name)) {
             let flag = getFlag(name);
             if (flag === "🏴‍☠️") {
                 flag = "🇻🇳";

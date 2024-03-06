@@ -15,7 +15,7 @@ function operator(proxies) {
 
 function containExceptionWords(name) {
     if (
-        ["ID:", "SNI:", "Dùng:"].some(function (v) {
+        ["ID:", "SNI:", "Dùng:", "HSD:", "Gói:"].some(function (v) {
             return name.indexOf(v) >= 0;
         })
     ) {

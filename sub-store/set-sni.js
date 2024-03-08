@@ -1,7 +1,7 @@
 function operator(proxies) {
     const { sni, allowInsecure, regex } = $arguments;
     proxies.forEach((p) => {
-        if (!regex || (regex && regex.test(p.name))) {
+        if (!regex || (regex && decodeURIComponent(regex).test(p.name))) {
             if (p.type === "vmess" && p.network === "ws") {
                 p["ws-opts"] = p["ws-opts"] || {};
                 p["ws-opts"]["headers"] = p["ws-opts"]["headers"] || {};

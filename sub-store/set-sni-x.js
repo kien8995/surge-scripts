@@ -3,11 +3,12 @@ const $ = $substore;
 async function operator(proxies) {
     const { sni, sniUrl, allowInsecure } = $arguments;
 
+    $.notify("123");
     const pattern =
         /(XM|X(-)?Gaming|XGame|XG|\bMAX\b|Dự Phòng|MYCLIP|FPTPLAY|MYDIO)/i;
 
     const host = await queryDataText(sniUrl);
-
+    $.notify(host);
     proxies.forEach((p) => {
         if (pattern.test(p.name)) {
             if (p.type === "vmess" && p.network === "ws") {

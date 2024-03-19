@@ -32,8 +32,7 @@ async function queryDataText(urlEncode) {
         "User-Agent": ua,
     };
 
-    const url =
-        "https://kien8995-substore.hf.space/GxqS0cxoA5fvspicQOYmYHEU/api/file/sni";
+    const url = "https://sub.store/api/file/sni";
 
     const result = new Promise((resolve, reject) => {
         $.http

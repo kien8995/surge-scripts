@@ -1,0 +1,7 @@
+#!name=Backend Hugging Face
+#!desc=Substore backend backed by Hugging Face
+#!requirement=CORE_VERSION>=20 && (SYSTEM = 'iOS' || SYSTEM = 'tvOS')
+#!arguments=backend_url:https://kien8995-substore.hf.space/GxqS0cxoA5fvspicQOYmYHEU
+
+[URL Rewrite]
+^https?:\/\/sub\.store {{{backend_url}}} header

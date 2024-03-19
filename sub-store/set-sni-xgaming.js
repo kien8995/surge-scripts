@@ -1,11 +1,11 @@
 function operator(proxies) {
     const { sni, allowInsecure } = $arguments;
+
+    const pattern =
+        /(XM|X(-)?Gaming|XGame|XG|\bMAX\b|Dự Phòng|MYCLIP|FPTPLAY|MYDIO)/i;
+
     proxies.forEach((p) => {
-        if (
-            /(XM|X(-)?Gaming|XGame|XG|\bMAX\b|Dự Phòng|MYCLIP|FPTPLAY|MYDIO)/i.test(
-                p.name
-            )
-        ) {
+        if (pattern.test(p.name)) {
             if (p.type === "vmess" && p.network === "ws") {
                 p["ws-opts"] = p["ws-opts"] || {};
                 p["ws-opts"]["headers"] = p["ws-opts"]["headers"] || {};

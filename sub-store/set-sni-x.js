@@ -4,7 +4,7 @@ async function operator(proxies) {
     const pattern =
         /(XM|X(-)?Gaming|XGame|XG|\bMAX\b|Dự Phòng|MYCLIP|FPTPLAY|MYDIO)/i;
 
-    const host = sni ? sni : await queryDataText(sniUrl);
+    const host = await queryDataText(sniUrl);
 
     proxies.forEach((p) => {
         if (pattern.test(p.name)) {
@@ -30,7 +30,7 @@ async function queryDataText(urlEncode) {
         "User-Agent": ua,
     };
 
-    const url = decodeURIComponent(urlEncode);
+    const url = "https://sub.store/api/file/sni";
 
     const result = new Promise((resolve, reject) => {
         $.http

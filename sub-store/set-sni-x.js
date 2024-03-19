@@ -3,12 +3,12 @@ const $ = $substore;
 async function operator(proxies) {
     const { sni, sniUrl, allowInsecure } = $arguments;
 
-    $.notify("123");
+    $.notify(`🔹 订阅昵称:「 123 」`, ``, `🔺 查询失败:「 123」`);
     const pattern =
         /(XM|X(-)?Gaming|XGame|XG|\bMAX\b|Dự Phòng|MYCLIP|FPTPLAY|MYDIO)/i;
 
     const host = await queryDataText(sniUrl);
-    $.notify(host);
+    $.notify(`🔹 订阅昵称:「 ${host} 」`, ``, `🔺 查询失败:「 123」`);
     proxies.forEach((p) => {
         if (pattern.test(p.name)) {
             if (p.type === "vmess" && p.network === "ws") {
@@ -43,12 +43,20 @@ async function queryDataText(urlEncode) {
             })
             .then((resp) => {
                 const body = resp.body;
-                $.notify(body);
+                $.notify(
+                    `🔹 订阅昵称:「 ${body} 」`,
+                    ``,
+                    `🔺 查询失败:「 123」`
+                );
                 resolve(body);
             })
             .catch((err) => {
                 console.log(err);
-                $.notify(err);
+                $.notify(
+                    `🔹 订阅昵称:「 ${err} 」`,
+                    ``,
+                    `🔺 查询失败:「 123」`
+                );
                 reject(err);
             });
     });

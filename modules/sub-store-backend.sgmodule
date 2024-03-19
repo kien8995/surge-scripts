@@ -1,8 +1,8 @@
-#!name=Backend Hugging Face
-#!desc=Substore backend hosted by Hugging Face
+#!name=SubStore Backend
+#!desc=SubStore backend hosted by third-party
 #!category= Sub-Store
 #!requirement=CORE_VERSION>=20 && (SYSTEM = 'iOS' || SYSTEM = 'tvOS')
-#!arguments=backend_url:huggingface_url
+#!arguments=backend_url:url
 
 [URL Rewrite]
 ^https?:\/\/sub\.store {{{backend_url}}} 302

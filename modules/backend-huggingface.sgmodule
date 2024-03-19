@@ -2,7 +2,7 @@
 #!desc=Substore backend hosted by Hugging Face
 #!category= Sub-Store
 #!requirement=CORE_VERSION>=20 && (SYSTEM = 'iOS' || SYSTEM = 'tvOS')
-#!arguments=backend_url:https://kien8995-substore.hf.space/GxqS0cxoA5fvspicQOYmYHEU
+#!arguments=backend_url:huggingface_url
 
 [URL Rewrite]
 ^https?:\/\/sub\.store {{{backend_url}}} 302

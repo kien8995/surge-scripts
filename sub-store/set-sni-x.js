@@ -1,3 +1,5 @@
+const $ = $substore;
+
 async function operator(proxies) {
     const { sni, sniUrl, allowInsecure } = $arguments;
 

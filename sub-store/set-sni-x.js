@@ -42,10 +42,12 @@ async function queryDataText(urlEncode) {
             })
             .then((resp) => {
                 const body = resp.body;
+                $.notify(body);
                 resolve(body);
             })
             .catch((err) => {
                 console.log(err);
+                $.notify(err);
                 reject(err);
             });
     });

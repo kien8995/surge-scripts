@@ -1,18 +1,23 @@
 async function operator(proxies) {
-    const { fileId } = $arguments;
-
-    const sniConfig = await getSniConfig(fileId);
-    const { xgaming, local } = sniConfig;
+    const sniConfig = await getSniConfig();
 
     proxies.forEach((proxy) => {
-        const isXgaming = parseRegex(xgaming.regex).test(proxy.name);
-        const isLocal = parseRegex(local.regex).test(proxy.name);
-
-        const sni = isXgaming
-            ? xgaming.sni
-            : isLocal
-            ? local.sni
-            : sniConfig.default.sni;
+        let sni = "";
+        for (const property in sniConfig) {
+            const value = sniConfig[property];
+            if (property === "default" && isRealValue(value)) {
+                sni = value.sni;
+                continue;
+            }
+            if (
+                isRealValue(value) &&
+                isRealValue(value.regex) &&
+                parseRegex(value.regex).test(proxy.name)
+            ) {
+                sni = value.sni;
+                break;
+            }
+        }
 
         updateSNI(proxy, sni);
     });
@@ -31,10 +36,10 @@ function updateSNI(proxy, sni) {
     }
 }
 
-async function getSniConfig(fileId) {
+async function getSniConfig() {
     const content = await produceArtifact({
         type: "file",
-        name: fileId,
+        name: "sni_management",
     });
 
     const result = ProxyUtils.yaml.safeLoad(content);

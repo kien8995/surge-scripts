@@ -1,8 +1,7 @@
 function operator(proxies) {
     const { sni, allowInsecure } = $arguments;
 
-    const pattern =
-        /(XM|X(-)?Gaming|XGame|XG|\bMAX\b|Dự Phòng|MYCLIP|FPTPLAY|MYDIO)/i;
+    const pattern = /(XM|X(-)?Gaming|XGame|XG|\bMAX\b|Dự Phòng|Local X)/i;
 
     proxies.forEach((p) => {
         if (pattern.test(p.name)) {

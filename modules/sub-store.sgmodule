@@ -1,5 +1,6 @@
 #!name=Sub-Store
 #!desc=Advanced subscription management tool
+#!category= Sub-Store
 #!arguments=ability:http-client-policy,cronexp:0 0 * * *,sync:"Sub-Store Sync"
 
 [MITM]
@@ -10,4 +11,5 @@ Sub-Store Core=type=http-request,pattern=^https?:\/\/sub\.store\/((download)|api
 
 Sub-Store Simple=type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-0.min.js,requires-body=true
 
-#{{{sync}}}=type=cron,cronexp={{{cronexp}}},wake-system=1,timeout=120,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/cron-sync-artifacts.min.js
+{{{sync}}}=type=cron,cronexp={{{cronexp}}},wake-system=1,timeout=120,script-path=https://github.com/sub-store-org/Sub-Store/releases/latest/download/cron-sync-artifacts.min.js
+Sub-Store Backup = type=cron,cronexp={{{cronexp}}},wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/kien8995/surge-scripts/main/scripts/substore-backup.js

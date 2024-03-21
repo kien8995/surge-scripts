@@ -1,17 +1,17 @@
 async function filter(proxies) {
-    const { fileId, type } = $arguments;
+    const { type } = $arguments;
 
-    const sniConfig = await getSniConfig(fileId);
+    const sniConfig = await getSniConfig();
 
     return proxies.map((proxy) =>
         parseRegex(sniConfig[type].regex).test(proxy.name)
     );
 }
 
-async function getSniConfig(fileId) {
+async function getSniConfig() {
     const content = await produceArtifact({
         type: "file",
-        name: fileId,
+        name: "sni_management",
     });
 
     const result = ProxyUtils.yaml.safeLoad(content);

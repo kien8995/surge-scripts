@@ -11,6 +11,7 @@ async function operator(proxies) {
             }
             if (
                 isRealValue(value) &&
+                (!isRealValue(value.skip) || !value.skip) &&
                 isRealValue(value.regex) &&
                 parseRegex(value.regex).test(proxy.name)
             ) {

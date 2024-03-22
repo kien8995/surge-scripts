@@ -18,8 +18,7 @@ function operator(proxies = [], targetPlatform, context) {
     );
 
     const masterSlaveObject = groupProxy(masterSlaveProxies);
-    const keys = Object.keys(masterSlaveObject);
-    for (let key in keys) {
+    for (const key in masterSlaveObject) {
         const keyProxies = masterSlaveObject[key];
 
         if (keyProxies.some((p) => p.subName.endsWith(SUB_NAME))) {

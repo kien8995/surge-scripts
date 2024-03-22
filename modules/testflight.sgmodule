@@ -1,5 +1,7 @@
 #!name=TestFlight
 #!desc=TestFlight regional restrictions lifted
+#!system=ios
+#!category= Apple
 
 [General]
 skip-proxy = %APPEND% iosapps.itunes.apple.com

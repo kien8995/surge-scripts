@@ -2,7 +2,7 @@
 
 [URL Rewrite]
 # yt  xxx (YouTube)
-^https:\/\/google.com\/search\?q=yt\+([^&]+).+ https://www.youtube.com/results?search_query=$1 302
+^https:\/\/www.google.com\/search\?q=yt\+([^&]+).+ https://www.youtube.com/results?search_query=$1 302
 
 [MITM]
-hostname = %APPEND% google.com
+hostname = %APPEND% www.google.com

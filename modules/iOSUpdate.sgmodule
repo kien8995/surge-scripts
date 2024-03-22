@@ -1,6 +1,7 @@
 #!name=Block Update
 #!desc=Block iOS/iPadOS system updates
 #!system=ios
+#!category= Apple
 
 [Rule]
 DOMAIN,gdmf.apple.com,REJECT

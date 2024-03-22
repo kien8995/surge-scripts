@@ -1,4 +1,5 @@
 #!name = QuickSearch
+#!desc= Quick Search
 
 [URL Rewrite]
 # yt  xxx (YouTube)

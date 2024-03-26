@@ -65,7 +65,7 @@ class ResourceCache {
 
 const resourceCache = new ResourceCache(CACHE_EXPIRATION_TIME_MS);
 
-async function filter(proxies) {
+async function operator(proxies) {
     const { type } = $arguments;
 
     const sniConfig = await getSniConfig();
@@ -82,23 +82,28 @@ async function filter(proxies) {
     };
 
     const value = sniConfig[type];
-    return await Promise.all(
-        proxies.map(async (proxy) => {
-            const conditions = [];
+    const finalProxies = [];
+    for (const proxy of proxies) {
+        const conditions = [];
 
-            if (isRealValue(value.regex)) {
-                conditions.push(regexCondition);
-            }
-            if (isRealValue(value.ports)) {
-                conditions.push(portsCondition);
-            }
-            if (isRealValue(value.ips)) {
-                conditions.push(ipsCondition);
-            }
+        if (isRealValue(value.regex)) {
+            conditions.push(regexCondition);
+        }
+        if (isRealValue(value.ports)) {
+            conditions.push(portsCondition);
+        }
+        if (isRealValue(value.ips)) {
+            conditions.push(ipsCondition);
+        }
 
-            return await runConditions(conditions, value, proxy);
-        })
-    );
+        const result = await runConditions(conditions, value, proxy);
+
+        if (result) {
+            finalProxies.push(proxy);
+        }
+    }
+
+    return finalProxies;
 }
 
 async function runConditions(conditions, config, proxy) {

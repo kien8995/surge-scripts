@@ -83,7 +83,7 @@ async function filter(proxies) {
 
     const value = sniConfig[type];
     return await Promise.all(
-        proxies.map((proxy) => {
+        proxies.map(async (proxy) => {
             const conditions = [];
 
             if (isRealValue(value.regex)) {
@@ -96,7 +96,7 @@ async function filter(proxies) {
                 conditions.push(ipsCondition);
             }
 
-            return runConditions(conditions, value, proxy);
+            return await runConditions(conditions, value, proxy);
         })
     );
 }
